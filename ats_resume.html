@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Muhammed Nihal P A Resume - Full Stack Developer, Flutter Developer, AI & IoT Engineer">
+  <title>Muhammed Nihal P A - Resume</title>
+  <style>
+    /* ===== Page & Print Setup ===== */
+    @page {
+      size: letter;
+      margin: 0.4in 0.5in;
+    }
+
+    @media print {
+
+      html,
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 0;
+        margin: 0;
+        font-size: 10pt;
+      }
+
+      .item {
+        break-inside: avoid;
+      }
+
+      a {
+        color: #1a5276 !important;
+      }
+    }
+
+    /* ===== Base ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
+      line-height: 1.25;
+      font-size: 10pt;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.4in 0.5in;
+      background: #ffffff;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      text-align: center;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      border-bottom: 2.5px solid #1a5276;
+    }
+
+    .name {
+      font-size: 22pt;
+      font-weight: 700;
+      color: #1a5276;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 9.5pt;
+      color: #333;
+    }
+
+    .contact-row a {
+      color: #1a5276;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-row span.plain {
+      color: #333;
+      font-weight: 500;
+    }
+
+    .contact-row .sep {
+      color: #aaa;
+      margin: 0 2px;
+    }
+
+    /* ===== Sections ===== */
+    .section {
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1a5276;
+      letter-spacing: 1.5px;
+      border-bottom: 1.5px solid #1a5276;
+      padding-bottom: 2px;
+      margin-bottom: 5px;
+    }
+
+    /* ===== Items (Experience, Projects, Education) ===== */
+    .item {
+      margin-bottom: 6px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 10pt;
+      color: #1a1a1a;
+    }
+
+    .item-subtitle {
+      font-style: italic;
+      font-size: 9.5pt;
+      color: #444;
+    }
+
+    .item-date {
+      font-size: 9pt;
+      color: #555;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .item-tag {
+      display: inline-block;
+      font-size: 8pt;
+      color: #1a5276;
+      font-weight: 600;
+      background: #e8f0f8;
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    /* ===== Bullet Lists ===== */
+    .item-details {
+      margin: 1px 0 0 0;
+      padding-left: 15px;
+      font-size: 9.5pt;
+      color: #222;
+    }
+
+    .item-details li {
+      margin-bottom: 0;
+      line-height: 1.28;
+    }
+
+    .tech-line {
+      color: #555;
+      font-size: 9pt;
+    }
+
+    .tech-line strong {
+      color: #1a5276;
+      font-weight: 600;
+    }
+
+    /* ===== Skills Grid ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 24px;
+      font-size: 9.5pt;
+    }
+
+    .skills-grid .skill-row {
+      display: flex;
+      line-height: 1.3;
+    }
+
+    .skills-grid .skill-label {
+      font-weight: 700;
+      color: #1a5276;
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+
+    .skills-grid .skill-value {
+      color: #333;
+    }
+
+    /* ===== Compact Lists (Achievements, Certs) ===== */
+    .compact-list {
+      padding-left: 15px;
+      font-size: 9.5pt;
+      color: #222;
+    }
+
+    .compact-list li {
+      margin-bottom: 1px;
+      line-height: 1.28;
+    }
+
+    .compact-list strong {
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <div class="header">
+    <h1 class="name">Muhammed Nihal P A</h1>
+    <div class="contact-row">
+      <span class="plain">+91 8301091311</span>
+      <span class="sep">|</span>
+      <a href="mailto:muhammednihal477@gmail.com">muhammednihal477@gmail.com</a>
+      <span class="sep">|</span>
+      <a href="https://nihalpa.dev">nihalpa.dev</a>
+      <span class="sep">|</span>
+      <a href="https://linkedin.com/in/muhammednihalpa477">linkedin.com/in/muhammednihalpa477</a>
+      <span class="sep">|</span>
+      <a href="https://github.com/Nihalbaabi">github.com/Nihalbaabi</a>
+    </div>
+  </div>
+
+  <!-- ==================== TECHNICAL SKILLS ==================== -->
+  <!-- ==================== TECHNICAL SKILLS ==================== -->
+  <div class="section">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-row">
+        <span class="skill-label">Languages:</span>
+        <span class="skill-value">JavaScript, TypeScript, Python, Java, C/C++, Dart, SQL, HTML/CSS</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Frontend:</span>
+        <span class="skill-value">React.js, Vite, TailwindCSS, HTML5, CSS3</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Backend:</span>
+        <span class="skill-value">Node.js, Express.js, REST APIs, JWT Authentication</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Mobile:</span>
+        <span class="skill-value">Flutter, Dart, Responsive UI Development</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Databases:</span>
+        <span class="skill-value">MongoDB, PostgreSQL, Firebase Realtime Database</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Cloud & DevOps:</span>
+        <span class="skill-value">AWS, Firebase, Vercel, Git, GitHub</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">AI & IoT:</span>
+        <span class="skill-value">Gemini AI, Google Vertex AI, ESP32, Arduino, MQTT/HTTP, Sensor Integration</span>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-label">Tools:</span>
+        <span class="skill-value">Postman, Android Studio, VS Code, Arduino IDE, Linux, LaTeX, Excel</span>
+      </div>
+
+    </div>
+  </div>
+  <!-- ==================== EXPERIENCE ==================== -->
+  <div class="section">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Full-Stack Development Intern</span>
+        <span class="item-date">Jun 2025 – Jul 2025</span>
+      </div>
+      <div class="item-header">
+        <span class="item-subtitle">ICT Academy of Kerala — Chalakudy, Kerala</span>
+      </div>
+      <ul class="item-details">
+        <li>Developed MERN stack applications with RESTful APIs, JWT authentication, and role-based access control.</li>
+        <li>Improved MongoDB query performance with indexed lookups; set up automated testing workflows.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Flutter Developer Intern</span>
+        <span class="item-date">Jun 2025</span>
+      </div>
+      <div class="item-header">
+        <span class="item-subtitle">Luminar Technolab — Kochi, Kerala</span>
+      </div>
+      <ul class="item-details">
+        <li>Built cross-platform mobile UI components using Flutter and Dart with Provider state management.</li>
+        <li>Developed responsive layouts and reusable widgets following Material Design guidelines.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Flutter Developer Intern</span>
+        <span class="item-date">Jun 2024 – Jul 2024</span>
+      </div>
+      <div class="item-header">
+        <span class="item-subtitle">Genzee Technologies LLP — Ernakulam, Kerala</span>
+      </div>
+      <ul class="item-details">
+        <li>Developed and debugged Flutter app features; resolved UI and state-management bugs during QA cycles.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== PROJECTS ==================== -->
+  <div class="section">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">SaveSphere — AI-Powered Smart Home Platform<span class="item-tag">1st Place — HackKarma
+            Hackathon</span></span>
+      </div>
+      <ul class="item-details">
+        <li>Engineered an AI-powered smart home platform with real-time electricity and water monitoring, Gemini AI
+          voice assistance, live analytics dashboards, and automated leak detection via ESP32 IoT sensors.</li>
+        <li class="tech-line"><strong>Stack:</strong> Flutter, React, TypeScript, Firebase, Gemini AI, ESP32, Arduino
+          C++, MQTT/HTTP</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">EcoWatt — IoT Smart Energy Monitor<span class="item-tag">1st Prize — ProXpo 2026
+          </span></span>
+      </div>
+      <ul class="item-details">
+        <li>Designed a cloud-connected IoT energy monitoring system with real-time power analytics, peak-usage alerting,
+          and scalable ESP32-to-Firebase data streaming — awarded 1st among 115+ projects.</li>
+        <li class="tech-line"><strong>Stack:</strong> Flutter, Firebase, ESP32, Arduino IDE, MQTT, SCT-013 Sensor</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">FleetFlow — Modular Fleet & Logistics Management</span>
+      </div>
+      <ul class="item-details">
+        <li>Architected a modular MERN-stack fleet management platform with real-time GPS tracking, automated invoicing,
+          role-based access control, and RESTful API-driven trip dispatching.</li>
+        <li class="tech-line"><strong>Stack:</strong> MongoDB, Express.js, React.js, Node.js, REST APIs, JWT
+          Authentication</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">GODDESS — Women Safety & Empowerment Platform</span>
+      </div>
+      <ul class="item-details">
+        <li>Implemented a cross-platform safety application featuring one-tap SOS alerting, real-time geolocation
+          sharing, Gemini AI–driven safety recommendations, and a secure community forum with authentication.</li>
+        <li class="tech-line"><strong>Stack:</strong> Flutter, Node.js, MongoDB, Firebase, Gemini AI</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">MediTrack — IoT Smart Pill Box</span>
+      </div>
+      <ul class="item-details">
+        <li>Developed an IoT-enabled smart pill dispenser with RTC-scheduled medication alerts, real-time caregiver
+          notifications via Firebase Cloud Messaging, and a responsive Flutter companion app.</li>
+        <li class="tech-line"><strong>Stack:</strong> Flutter, ESP32, Firebase, RTC Module</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== LEADERSHIP & ACHIEVEMENTS ==================== -->
+  <div class="section">
+    <h2 class="section-title">Leadership & Achievements</h2>
+    <ul class="compact-list">
+      <li><strong>1st Place — HackKarma Hackathon (KMCT Engineering College)</strong> — Won for SaveSphere, an
+        AI-powered smart home platform built with Flutter, React, Firebase, and ESP32.</li>
+      <li><strong>1st Prize — ProXpo 2026 Project Exhibition</strong> — Awarded among 115+ competing projects for
+        EcoWatt, an IoT-based smart energy monitoring system.</li>
+      <li><strong>Co-Lead, ACM Student Chapter (ASIET)</strong> — Organize technical events, workshops, and coding
+        competitions; coordinate 5+ events per semester. <em>(Jun 2025 – Present)</em></li>
+      <li><strong>Resource Person & IoT Trainer</strong> — Conducted hands-on web development (ACM WebSpark, 40+
+        students) and IoT training sessions at Govt Polytechnic College.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== CERTIFICATIONS ==================== -->
+  <div class="section">
+    <h2 class="section-title">Certifications</h2>
+    <ul class="compact-list">
+      <li><strong>Cloud Computing with AWS</strong> — Academy of Skill Development (Mar 2026)</li>
+      <li><strong>Artificial Intelligence Fundamentals</strong> — IBM (Jan 2026)</li>
+      <li><strong>Database Management System</strong> — NPTEL (Jan 2025)</li>
+      <li><strong>Programming in Java</strong> — NPTEL (Oct 2024)</li>
+      <li><strong>Full-Stack Web Development Bootcamp</strong> — Udemy (Jul 2024)</li>
+    </ul>
+  </div>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <div class="section">
+    <h2 class="section-title">Education</h2>
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">B.Tech, Computer Science & Engineering</span>
+        <span class="item-date">Jan 2023 – Apr 2027</span>
+      </div>
+      <div class="item-header">
+        <span class="item-subtitle">Adi Shankara Institute of Engineering and Technology — Kalady, Kerala</span>
+      </div>
+      <ul class="item-details">
+        <li>Relevant Coursework: Operating Systems, DBMS, Data Structures & Algorithms, Computer Networks, OOP</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Higher Secondary (Computer Science) — 97.75%</span>
+        <span class="item-date">Jul 2021 – May 2023</span>
+      </div>
+      <div class="item-header">
+        <span class="item-subtitle">Government Higher Secondary School — Kuttumasserry, Kerala</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
