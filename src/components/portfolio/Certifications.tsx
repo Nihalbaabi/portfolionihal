@@ -32,7 +32,7 @@ interface CertGroup {
 
 const certifications: CertGroup[] = [
   {
-    category: "Cloud & Infrastructure",
+    category: "Cloud",
     emoji: "☁️",
     items: [
       {
@@ -59,7 +59,7 @@ const certifications: CertGroup[] = [
     ],
   },
   {
-    category: "Software Engineering & Programming",
+    category: "Software Engineering",
     emoji: "⚡",
     items: [
       {
@@ -118,7 +118,7 @@ const certifications: CertGroup[] = [
     ],
   },
   {
-    category: "Emerging Technology",
+    category: "Emerging Tech",
     emoji: "🤖",
     items: [
       {
@@ -149,8 +149,8 @@ export function Certifications() {
       : certifications.filter((g) => g.category === activeCategory);
 
   const allCerts = filteredGroups.flatMap((g) => g.items);
-  const displayedCerts = showAll ? allCerts : allCerts.slice(0, 4);
-  const hasMore = allCerts.length > 4;
+  const displayedCerts = showAll ? allCerts : allCerts.slice(0, 3);
+  const hasMore = allCerts.length > 3;
 
   return (
     <section id="certifications" ref={sectionRef} className="relative py-28 bg-secondary overflow-hidden">
@@ -217,77 +217,60 @@ export function Certifications() {
               >
                 <div
                   onClick={() => setSelectedCert(cert)}
-                  className="group relative bg-background rounded-2xl border border-border/60 hover:border-transparent overflow-hidden cursor-pointer transition-all duration-400 hover:shadow-2xl hover:-translate-y-1.5"
-                  style={{
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-                  }}
+                  className="group relative bg-white rounded-xl border border-border hover:border-border/80 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1"
                 >
-                  {/* Top accent bar */}
-                  <div
-                    className="h-1 w-full transition-all duration-500 group-hover:h-1.5"
-                    style={{
-                      background: `linear-gradient(90deg, ${cert.color}, ${cert.color}88)`,
-                    }}
-                  />
+                  {/* Top Bar - API/Git Header */}
+                  <div className="h-8 bg-secondary/80 border-b border-border flex items-center px-4 gap-2">
+                     <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">certification / {cert.icon}</span>
+                     <div className="ml-auto flex items-center gap-2">
+                       <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                       <span className="font-mono text-[9px] text-green-600 font-bold uppercase tracking-wider">Verified Status</span>
+                     </div>
+                  </div>
 
-                  <div className="p-6 flex gap-5">
-                    {/* Certificate Thumbnail */}
-                    <div className="shrink-0">
-                      <div
-                        className="w-16 h-16 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-2 border-2"
-                        style={{
-                          borderColor: cert.color,
-                          boxShadow: `0 8px 24px ${cert.color}25`,
-                        }}
-                      >
+                  <div className="flex flex-col sm:flex-row h-full">
+                    {/* Image Section */}
+                    <div className="w-full sm:w-[150px] shrink-0 bg-background/50 p-4 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-border/50">
+                      <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden rounded border border-border/50 shadow-sm bg-white">
                         <img
+                          loading="lazy"
+                          decoding="async"
                           src={cert.image}
                           alt={cert.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-3 mb-1.5">
-                        <h4 className="font-display text-lg text-ink leading-snug group-hover:text-coral transition-colors duration-300 line-clamp-2">
-                          {cert.title}
-                        </h4>
-                        <span
-                          className="shrink-0 text-[11px] font-bold tracking-wider px-2.5 py-1 rounded-full whitespace-nowrap"
-                          style={{
-                            color: cert.color,
-                            backgroundColor: `${cert.color}12`,
-                          }}
-                        >
-                          {cert.date}
-                        </span>
+                    {/* Content Section */}
+                    <div className="p-5 flex-1 flex flex-col min-w-0">
+                      <h4 className="font-sans text-base font-bold text-ink leading-tight mb-2 group-hover:text-coral transition-colors line-clamp-2">
+                        {cert.title}
+                      </h4>
+                      
+                      {/* Code-like import statement for the issuer */}
+                      <div className="font-mono text-[11px] text-muted-foreground mb-3 truncate">
+                        <span className="text-coral font-semibold">import</span> {"{"} certification {"}"} <span className="text-coral font-semibold">from</span> <span className="text-blue-600">'{cert.issuer.toLowerCase().replace(/\s+/g, '-')}'</span>;
                       </div>
 
-                      <p className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-1.5">
-                        <Award size={13} className="text-coral shrink-0" />
-                        {cert.issuer}
-                      </p>
-
-                      <p className="text-[13px] text-muted-foreground/80 leading-relaxed line-clamp-2">
+                      <p className="text-[13px] text-muted-foreground/80 leading-relaxed line-clamp-2 mb-4 flex-1">
                         {cert.description}
                       </p>
 
-                      {cert.credentialId && (
-                        <div className="mt-3 pt-3 border-t border-border/40">
-                          <p className="text-[10px] tracking-[0.15em] text-muted-foreground/50 font-bold uppercase">
-                            ID: <span className="font-mono text-muted-foreground/70 normal-case tracking-normal">{cert.credentialId}</span>
-                          </p>
+                      <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/40 gap-4">
+                        <div className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground truncate min-w-0">
+                          <span className="bg-secondary px-2 py-1 rounded text-ink/70 whitespace-nowrap border border-border/50">
+                            date: '{cert.date}'
+                          </span>
+                          {cert.credentialId && (
+                            <span className="bg-secondary px-2 py-1 rounded text-ink/70 truncate max-w-[120px] border border-border/50">
+                              id: '{cert.credentialId}'
+                            </span>
+                          )}
                         </div>
-                      )}
+                        <ExternalLink size={14} className="text-coral opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Hover reveal arrow */}
-                  <div className="absolute bottom-4 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                    <ExternalLink size={16} className="text-coral" />
                   </div>
                 </div>
               </motion.div>
@@ -382,6 +365,8 @@ export function Certifications() {
                 />
                 <div className="absolute inset-0 dot-pattern opacity-30 mix-blend-multiply pointer-events-none" />
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={selectedCert.image}
                   alt={selectedCert.title}
                   className="max-w-full max-h-full object-contain rounded-xl shadow-xl z-10"
@@ -424,11 +409,17 @@ export function Certifications() {
                 {selectedCert.credentialId && (
                   <div className="mt-8 pt-6 border-t border-border">
                     <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground/60 uppercase mb-2">
-                      Credential ID
+                      Credential Verification
                     </p>
-                    <p className="text-sm font-mono text-ink bg-secondary px-4 py-2.5 rounded-lg break-all border border-border/50">
-                      {selectedCert.credentialId}
-                    </p>
+                    <a
+                      href={`#verify-${selectedCert.credentialId}`}
+                      className="inline-flex items-center gap-3 w-full bg-secondary hover:bg-coral/10 px-4 py-3 rounded-xl border border-border/50 hover:border-coral transition-colors group/modal-link"
+                    >
+                      <span className="text-sm font-mono text-ink group-hover/modal-link:text-coral transition-colors break-all flex-1">
+                        {selectedCert.credentialId}
+                      </span>
+                      <ExternalLink size={16} className="text-muted-foreground group-hover/modal-link:text-coral shrink-0" />
+                    </a>
                   </div>
                 )}
               </div>

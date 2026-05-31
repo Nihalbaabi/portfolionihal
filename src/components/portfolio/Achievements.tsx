@@ -64,20 +64,21 @@ export function Achievements() {
                 variants={itemVariants}
                 key={item.title}
                 onClick={() => setSelectedItem(item)}
-                className="group bg-background rounded-[2rem] border border-border hover:border-coral hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer shrink-0 w-[85vw] sm:w-auto snap-center"
+                className="group bg-white rounded-none border border-border/80 hover:border-coral hover:shadow-[0_10px_40px_rgba(244,63,94,0.1)] transition-all duration-500 overflow-hidden flex flex-col cursor-pointer shrink-0 w-[85vw] sm:w-auto snap-center aspect-square"
               >
-                <div className="h-48 w-full overflow-hidden relative">
-                  <div className="absolute inset-0 bg-ink/10 group-hover:bg-transparent transition-colors z-10" />
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                {/* ~70% Image Area */}
+                <div className="h-[65%] lg:h-[68%] w-full overflow-hidden relative shrink-0">
+                  <img loading="lazy" decoding="async" src={item.image} alt={item.title} className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" />
                 </div>
-                <div className="p-8 flex-1 flex flex-col">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-coral/10 text-coral group-hover:bg-coral group-hover:text-ink transition-all duration-300">
-                      <item.Icon size={20} />
+                {/* ~30% Text Area */}
+                <div className="flex-1 px-5 py-4 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-2">
+                    <span className="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral group-hover:bg-coral group-hover:text-white transition-all duration-300">
+                      <item.Icon size={20} strokeWidth={1.5} />
                     </span>
-                    <h3 className="font-display text-xl text-ink font-bold">{item.title}</h3>
+                    <h3 className="font-display text-[15px] sm:text-[16px] lg:text-[18px] text-ink font-bold leading-tight line-clamp-2">{item.title}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.desc}</p>
+                  <p className="text-[12px] lg:text-[13px] text-muted-foreground leading-relaxed line-clamp-2">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -116,6 +117,8 @@ export function Achievements() {
               </button>
               <div className="w-full bg-ink/5 flex items-center justify-center overflow-hidden h-[60vh] md:h-[70vh]">
                 <img 
+                  loading="lazy"
+                  decoding="async"
                   src={selectedItem.image} 
                   alt={selectedItem.title} 
                   className="w-full h-full object-contain"

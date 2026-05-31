@@ -35,7 +35,7 @@ export function Hero() {
               Projects
             </a>
             <a
-              href="https://linkedin.com/in/muhammednihal" // Update with real link
+              href="https://www.linkedin.com/in/muhammednihalpa477"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-2.5 bg-transparent border-[1.5px] border-ink text-ink text-[15px] font-semibold rounded-md hover:bg-ink hover:text-white transition-colors"
@@ -49,10 +49,11 @@ export function Hero() {
         <div className="relative h-full w-full flex items-end justify-center z-10">
           {/* Subtle glow behind the image to soften cut-out edges */}
           <img
+            decoding="async"
             src={portrait}
             alt="Muhammed Nihal P A"
             className="max-h-[85vh] w-auto object-contain object-bottom animate-fade-up relative z-10"
-            style={{ 
+            style={{
               animationDelay: "0.2s",
               filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.15)) drop-shadow(0 0 60px rgba(244, 63, 94, 0.4))"
             }}

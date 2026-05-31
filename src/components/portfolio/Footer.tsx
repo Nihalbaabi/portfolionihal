@@ -18,9 +18,10 @@ export function Footer() {
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="h-9 w-9 rounded-full border border-ink flex items-center justify-center text-ink hover:bg-coral hover:border-coral hover:text-white transition-all"
+              className="h-10 w-10 rounded-full border-2 border-ink flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:scale-110 transition-all duration-200 shadow-sm"
+              aria-label={`Visit ${href}`}
             >
-              <Icon size={14} />
+              <Icon size={18} strokeWidth={2.5} />
             </a>
           ))}
         </div>
