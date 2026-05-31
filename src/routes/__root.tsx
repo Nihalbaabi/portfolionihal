@@ -99,6 +99,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Cloudflare Web Analytics */}
+        <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "e67bc3c796b54e8a8cda6871490c6b98"}'></script>
       </head>
       <body>
         {children}
