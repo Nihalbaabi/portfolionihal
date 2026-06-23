@@ -71,7 +71,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=1280" },
       { title: "Muhammed Nihal P A — Software Engineer" },
       { name: "description", content: "Portfolio of Muhammed Nihal P A — Computer Science Engineering student passionate about IoT, embedded systems, networking, and software development." },
       { name: "author", content: "Muhammed Nihal" },
