@@ -1,246 +1,131 @@
-import { useState, type FormEvent } from "react";
-import { Github, Linkedin, Mail, Play, CheckCircle2, ChevronRight, FileCode2, Terminal } from "lucide-react";
-import { SectionHeading } from "./SectionHeading";
-import { toast } from "sonner";
-import { z } from "zod";
-import { motion } from "framer-motion";
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Invalid email").max(255),
-  message: z.string().trim().min(1, "Message is required").max(1000),
-});
-
-export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("contact.ts");
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const parsed = schema.safeParse(form);
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0]?.message ?? "Please check your input");
-      return;
-    }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast.success("Script executed! I'll get back to you soon.");
-      setForm({ name: "", email: "", message: "" });
-    }, 1500);
-  };
+export const Contact = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  // Parallax translation for the big text
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "30%"]);
 
   return (
-    <section id="contact" className="relative py-28 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-10">
-        <SectionHeading eyebrow="GET IN TOUCH" title="Let's build something." />
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mt-16 max-w-5xl mx-auto rounded-xl border border-border/80 bg-[#0d1117] shadow-2xl overflow-hidden flex flex-col font-mono"
+    <section ref={ref} id="contact" className="bg-[#000000] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 md:pb-0">
+      {/* Smooth fade from top to prevent sharp text cutoff */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#000000] via-[#000000]/80 to-transparent z-10 pointer-events-none" />
+
+      {/* Huge Background Text */}
+      <motion.div 
+        style={{ y }}
+        className="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-center overflow-hidden pointer-events-none z-0 pt-24 md:pt-20"
+      >
+        <h1 
+          className="text-[18vw] leading-[0.8] font-black text-white uppercase tracking-tighter select-none scale-y-[1.2] origin-top opacity-80"
+          style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
         >
-          {/* IDE Header */}
-          <div className="h-12 bg-[#010409] border-b border-white/5 flex items-center px-4 justify-between relative">
-             <div className="flex items-center gap-2 z-10">
-                <div className="w-3 h-3 rounded-full bg-[#FF5F56] hover:bg-red-400 cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-[#FFBD2E] hover:bg-yellow-400 cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-[#27C93F] hover:bg-green-400 cursor-pointer" />
-             </div>
-             <div className="absolute inset-0 flex items-center justify-center text-[12px] text-white/40 tracking-wider pointer-events-none">
-                Nihal_Portfolio — Code Editor
-             </div>
+          Contact
+        </h1>
+      </motion.div>
+
+      {/* Form Card Overlay */}
+      <div className="relative z-10 w-full flex justify-end items-end">
+        <div 
+          data-aos="fade-up"
+          className="bg-[#ff2a2a]/70 backdrop-blur-xl border-t border-l border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] w-full md:w-[85%] lg:w-[75%] p-8 md:p-16 text-white flex flex-col justify-between rounded-tl-2xl"
+        >
+          <div className="text-xs font-bold tracking-[0.2em] mb-12 md:mb-20 uppercase opacity-90">
+            Reach Us
           </div>
 
-          <div className="flex flex-col md:flex-row h-auto md:h-[600px]">
-             {/* Sidebar Explorer */}
-             <div className="w-full md:w-64 bg-[#0d1117] border-b md:border-b-0 md:border-r border-white/5 flex flex-col shrink-0">
-                <div className="py-2 md:py-3 px-4 text-[11px] text-white/50 tracking-wider uppercase font-semibold flex items-center gap-1">
-                   <ChevronRight size={14} className="rotate-90" /> EXPLORER
+          <form className="flex flex-col gap-12 md:gap-16 w-full">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-20 w-full">
+              {/* Left Column */}
+              <div className="flex-1 flex flex-col gap-10">
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    id="firstName" 
+                    aria-label="First Name"
+                    placeholder="First Name" 
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
                 </div>
-                
-                <div className="flex flex-row md:flex-col gap-0.5 px-2 pb-2 md:pb-0 overflow-x-auto hide-scrollbar">
-                   <div className="hidden md:block py-1 px-4 text-[11px] text-white/50 tracking-wider uppercase font-semibold mt-2 mb-1">
-                     PORTFOLIO
-                   </div>
-                   
-                   <button 
-                     onClick={() => setActiveTab("contact.ts")}
-                     className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap transition-colors ${activeTab === "contact.ts" ? "bg-white/10 text-white" : "text-white/60 hover:bg-white/5 hover:text-white"}`}
-                   >
-                     <FileCode2 size={15} className="text-[#3178c6]" /> contact.ts
-                   </button>
-                   
-                   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammednihal477@gmail.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap text-white/60 hover:bg-white/5 hover:text-white transition-colors">
-                     <Mail size={15} className="text-[#ea4335]" /> email.config.json
-                   </a>
-                   
-                   <a href="https://github.com/Nihalbaabi" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap text-white/60 hover:bg-white/5 hover:text-white transition-colors">
-                     <Github size={15} className="text-white" /> github.md
-                   </a>
-                   
-                   <a href="https://www.linkedin.com/in/muhammednihalpa477" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-3 py-1.5 rounded-md text-[13px] whitespace-nowrap text-white/60 hover:bg-white/5 hover:text-white transition-colors">
-                     <Linkedin size={15} className="text-[#0a66c2]" /> linkedin.yml
-                   </a>
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    id="lastName" 
+                    aria-label="Last Name"
+                    placeholder="Last Name" 
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
                 </div>
-             </div>
-
-             {/* Main Editor Area */}
-             <div className="flex-1 flex flex-col bg-[#0d1117] relative w-full overflow-hidden">
-                {/* Tabs */}
-                <div className="flex border-b border-white/5 bg-[#010409] overflow-x-auto hide-scrollbar">
-                   <div className="px-4 py-2 border-r border-white/5 flex items-center gap-2 text-[13px] text-white bg-[#0d1117] border-t-2 border-t-[#3178c6] whitespace-nowrap">
-                     <FileCode2 size={14} className="text-[#3178c6]" /> contact.ts
-                   </div>
+                <div className="relative">
+                  <input 
+                    type="email" 
+                    id="email" 
+                    aria-label="Email Address"
+                    placeholder="Email" 
+                    className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
+                  />
                 </div>
+              </div>
 
-                {/* Editor Content */}
-                <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-                   <form onSubmit={onSubmit} className="max-w-2xl text-[13px] sm:text-[14px] lg:text-[15px] leading-loose">
-                      <div className="flex mb-4">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">1</span>
-                         <div className="text-white/40 italic">{"/**"}</div>
-                      </div>
-                      <div className="flex mb-4">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">2</span>
-                         <div className="text-white/40 italic whitespace-normal">{" * Open to internships, collaborations, and interesting tech conversations."}</div>
-                      </div>
-                      <div className="flex mb-4">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">3</span>
-                         <div className="text-white/40 italic">{" */"}</div>
-                      </div>
-                      
-                      <div className="flex mb-2">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">4</span>
-                         <div className="flex-1 whitespace-nowrap overflow-x-auto hide-scrollbar">
-                            <span className="text-[#ff7b72]">import</span> {"{ "} <span className="text-[#d2a8ff]">sendEmail</span> {" }"} <span className="text-[#ff7b72]">from</span> <span className="text-[#a5d6ff]">'@/services/api'</span>;
-                         </div>
-                      </div>
-
-                      <div className="flex mb-6">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">5</span>
-                      </div>
-
-                      <div className="flex mb-2">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">6</span>
-                         <div>
-                            <span className="text-[#ff7b72]">const</span> <span className="text-[#79c0ff]">visitor</span> <span className="text-[#ff7b72]">=</span> {"{"}
-                         </div>
-                      </div>
-
-                      {/* Name Input */}
-                      <div className="flex mb-2 group">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0 group-focus-within:text-white/60">7</span>
-                         <div className="flex w-full items-center pl-4 sm:pl-8 flex-wrap">
-                            <span className="text-[#79c0ff] mr-2">name:</span>
-                            <span className="text-[#a5d6ff]">"</span>
-                            <input 
-                              required
-                              value={form.name}
-                              onChange={e => setForm({...form, name: e.target.value})}
-                              className="bg-transparent text-[#a5d6ff] outline-none min-w-[150px] sm:min-w-[200px] w-auto border-b border-transparent focus:border-white/20 transition-colors"
-                              placeholder="John Doe"
-                            />
-                            <span className="text-[#a5d6ff]">"</span><span className="text-white">,</span>
-                         </div>
-                      </div>
-
-                      {/* Email Input */}
-                      <div className="flex mb-2 group">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0 group-focus-within:text-white/60">8</span>
-                         <div className="flex w-full items-center pl-4 sm:pl-8 flex-wrap">
-                            <span className="text-[#79c0ff] mr-2">email:</span>
-                            <span className="text-[#a5d6ff]">"</span>
-                            <input 
-                              required
-                              type="email"
-                              value={form.email}
-                              onChange={e => setForm({...form, email: e.target.value})}
-                              className="bg-transparent text-[#a5d6ff] outline-none min-w-[150px] sm:min-w-[250px] w-auto border-b border-transparent focus:border-white/20 transition-colors"
-                              placeholder="john@example.com"
-                            />
-                            <span className="text-[#a5d6ff]">"</span><span className="text-white">,</span>
-                         </div>
-                      </div>
-
-                      {/* Message Input */}
-                      <div className="flex mb-2 group">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0 group-focus-within:text-white/60">9</span>
-                         <div className="flex w-full items-start pl-4 sm:pl-8">
-                            <span className="text-[#79c0ff] mr-2 mt-1">message:</span>
-                            <span className="text-[#a5d6ff] mt-1">`</span>
-                            <textarea 
-                              required
-                              value={form.message}
-                              onChange={e => setForm({...form, message: e.target.value})}
-                              className="bg-transparent text-[#a5d6ff] outline-none w-full max-w-sm border-b border-transparent focus:border-white/20 transition-colors resize-none h-24 mt-1"
-                              placeholder="Hey Nihal, let's build something awesome..."
-                            />
-                            <span className="text-[#a5d6ff] self-end mb-1">`</span>
-                         </div>
-                      </div>
-
-                      <div className="flex mb-6">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">10</span>
-                         <div className="text-white">{"};"}</div>
-                      </div>
-
-                      <div className="flex mb-6">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">11</span>
-                      </div>
-
-                      {/* Submit Button disguised as function call */}
-                      <div className="flex mb-2">
-                         <span className="text-white/20 select-none mr-3 sm:mr-4 text-right w-4 sm:w-6 shrink-0">12</span>
-                         <div className="flex items-center flex-wrap">
-                            <span className="text-[#ff7b72]">await</span>&nbsp;
-                            <span className="text-[#d2a8ff]">sendEmail</span>
-                            <span className="text-white">(</span>
-                            <span className="text-[#79c0ff]">visitor</span>
-                            <span className="text-white">);</span>
-                         </div>
-                      </div>
-
-                      <div className="flex mt-8 pl-8 sm:pl-10">
-                         <button
-                           type="submit"
-                           disabled={loading}
-                           className="group flex items-center gap-2 bg-[#238636] hover:bg-[#2ea043] text-white px-5 py-2.5 rounded-md font-sans text-sm font-bold transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                         >
-                           {loading ? (
-                             <>
-                               <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                               Executing Script...
-                             </>
-                           ) : (
-                             <>
-                               <Play size={16} className="fill-white/80 group-hover:fill-white" />
-                               Run Script
-                             </>
-                           )}
-                         </button>
-                      </div>
-                   </form>
+              {/* Right Column */}
+              <div className="flex-1 flex flex-col">
+                <div className="relative h-full flex flex-col">
+                  <textarea 
+                    id="message" 
+                    aria-label="Message"
+                    placeholder="Type your message here" 
+                    className="w-full h-full min-h-[120px] bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium resize-none rounded-none"
+                  ></textarea>
                 </div>
-                
-                {/* Status Bar */}
-                <div className="h-6 sm:h-7 bg-[#3178c6] flex items-center px-4 justify-between text-[10px] sm:text-[11px] text-white font-sans shrink-0">
-                   <div className="flex items-center gap-3 sm:gap-4">
-                      <span className="flex items-center gap-1.5"><Terminal size={13}/> {loading ? "Running script..." : "Ready"}</span>
-                      {loading && <span className="flex items-center gap-1.5 animate-pulse"><CheckCircle2 size={13}/> Sending</span>}
-                   </div>
-                   <div className="flex items-center gap-3 sm:gap-4">
-                      <span className="hidden sm:inline">UTF-8</span>
-                      <span>TypeScript React</span>
-                   </div>
+              </div>
+            </div>
+
+            {/* Bottom Section */}
+            <div className="flex flex-col md:flex-row gap-12 mt-4">
+              {/* Left text */}
+              <div className="flex-1 flex items-start gap-4 text-sm font-medium text-white/90">
+                <input 
+                  type="checkbox" 
+                  id="permission" 
+                  className="mt-1 w-4 h-4 rounded-sm border-white/40 bg-transparent text-white focus:ring-white focus:ring-offset-0 focus:ring-offset-transparent cursor-pointer" 
+                  style={{ accentColor: "white" }}
+                />
+                <label htmlFor="permission" className="cursor-pointer max-w-[280px] leading-snug">
+                  I give permission to contact me at this email address.
+                </label>
+              </div>
+
+              {/* Right text & button */}
+              <div className="flex-1 flex flex-col gap-8 text-xs text-white/70 font-medium">
+                <p className="leading-relaxed max-w-[400px]">
+                  This site is protected by reCAPTCHA and the Google <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="#" className="underline hover:text-white transition-colors">Terms of Service</a> apply.
+                </p>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6">
+                  <p className="max-w-[250px] leading-relaxed">
+                    For information on how to unsubscribe, please review our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
+                  </p>
+                  
+                  <button 
+                    type="submit" 
+                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto"
+                  >
+                    Send
+                    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
                 </div>
-             </div>
-          </div>
-        </motion.div>
+              </div>
+            </div>
+          </form>
+
+        </div>
       </div>
     </section>
   );
-}
+};

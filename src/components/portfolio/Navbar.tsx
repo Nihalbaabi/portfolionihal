@@ -1,108 +1,106 @@
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import React, { useState, useEffect } from 'react';
 
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#resume", label: "Resume" },
-  { href: "#achievements", label: "Achievements" },
-];
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-export function Navbar() {
-  const [active, setActive] = useState("#about");
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
+  // Handle scroll to make navbar more solid
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      const sections = links.map((l) => document.querySelector(l.href));
-      const y = window.scrollY + 120;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = sections[i] as HTMLElement | null;
-        if (el && el.offsetTop <= y) {
-          setActive(links[i].href);
-          return;
-        }
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
       }
     };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Achievements', href: '#achievements' },
+    { name: 'Resume', href: '#resume' }
+  ];
+
   return (
-    <header 
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"
-      )}
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isOpen 
+          ? 'bg-[#ff2a2a] py-4'
+          : isScrolled 
+            ? 'bg-transparent py-4' 
+            : 'bg-transparent py-6'
+      }`}
     >
-      <div className="container mx-auto px-6 lg:px-10">
-        <nav className="flex items-center justify-center w-full">
-          <ul className="hidden lg:flex items-center gap-8">
-            {links.map((l) => {
-              const isActive = active === l.href;
-              return (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className={cn(
-                      "text-[15px] font-medium transition-colors hover:text-ink",
-                      isActive ? "text-ink font-bold" : "text-ink/70"
-                    )}
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              );
-            })}
-            <li>
-              <a
-                href="#contact"
-                className="text-[15px] font-medium text-ink/70 hover:text-ink transition-colors"
-              >
-                Contacts
-              </a>
-            </li>
-          </ul>
-          <button
-            className="lg:hidden text-ink p-2"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        
+        {/* Left Side: Logo/Name */}
+        <div className="flex items-center">
+          <a href="#" className="text-white text-2xl font-black tracking-tight">
+            Nihal<span className="text-[#ff2a2a]">.</span>
+          </a>
+        </div>
+
+        {/* Center: Desktop Menu Links */}
+        <div className="hidden lg:flex space-x-6 xl:space-x-8">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              className="text-white/80 hover:text-white font-medium relative group transition-colors duration-300 text-sm xl:text-base"
+            >
+              {link.name}
+              {/* Smooth hover underline */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff2a2a] transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
+        </div>
+
+        {/* Right Side: CTA Button Removed */}
+
+        {/* Mobile Hamburger Menu Icon */}
+        <div className="md:hidden flex items-center">
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white focus:outline-none p-2"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
-        </nav>
-        {open && (
-          <div className="lg:hidden pb-6 bg-white/95 backdrop-blur-md px-6 rounded-b-2xl shadow-lg animate-fade-up absolute w-full left-0 top-[100%]">
-            <ul className="flex flex-col gap-4 pt-4">
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-2 text-[16px] font-medium text-ink"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href="#contact"
-                  onClick={() => setOpen(false)}
-                  className="block py-2 text-[16px] font-medium text-ink"
-                >
-                  Contacts
-                </a>
-              </li>
-            </ul>
-          </div>
-        )}
+        </div>
       </div>
-    </header>
+
+      {/* Mobile Slide-Down Menu */}
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full transition-all duration-300 overflow-hidden ${
+          isOpen ? 'max-h-96 py-4 opacity-100 bg-[#ff2a2a] shadow-2xl' : 'max-h-0 opacity-0 bg-transparent'
+        }`}
+      >
+        <div className="flex flex-col px-6 space-y-4">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="text-white hover:text-black font-bold text-lg border-b border-white/20 pb-2 transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
+          {/* Mobile CTA Button Removed */}
+        </div>
+      </div>
+    </nav>
   );
-}
+};

@@ -1,15 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import React, { useEffect, Suspense } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Preloader } from "@/components/portfolio/Preloader";
 import { Navbar } from "@/components/portfolio/Navbar";
-import { AnimatedBackground } from "@/components/portfolio/AnimatedBackground";
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
-import { Projects } from "@/components/portfolio/Projects";
-import { Certifications } from "@/components/portfolio/Certifications";
-import { Resume } from "@/components/portfolio/Resume";
-import { Achievements } from "@/components/portfolio/Achievements";
-import { Contact } from "@/components/portfolio/Contact";
+import { Services } from "@/components/portfolio/Services";
+const Projects = React.lazy(() => import("@/components/portfolio/Projects").then(module => ({ default: module.Projects })));
+const Certifications = React.lazy(() => import("@/components/portfolio/Certifications").then(module => ({ default: module.Certifications })));
+const Achievements = React.lazy(() => import("@/components/portfolio/Achievements").then(module => ({ default: module.Achievements })));
+const Resume = React.lazy(() => import("@/components/portfolio/Resume").then(module => ({ default: module.Resume })));
+const Contact = React.lazy(() => import("@/components/portfolio/Contact").then(module => ({ default: module.Contact })));
 import { Footer } from "@/components/portfolio/Footer";
-import { Experiences } from "@/components/portfolio/Experiences";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
@@ -32,19 +35,29 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out'
+    });
+  }, []);
+
   return (
-    <div className="relative min-h-screen text-foreground">
-      <AnimatedBackground />
+    <div className="relative min-h-screen text-foreground selection:bg-[#ff2a2a] selection:text-white">
+      <Preloader />
       <Navbar />
       <main>
         <Hero />
         <About />
-        <Projects />
-        <Certifications />
-        <Resume />
-        <Experiences />
-        <Achievements />
-        <Contact />
+        <Services />
+        <Suspense fallback={<div className="min-h-screen bg-black" />}>
+          <Projects />
+          <Certifications />
+          <Achievements />
+          <Resume />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
       <Toaster />

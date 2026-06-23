@@ -153,10 +153,26 @@ export function Certifications() {
   const hasMore = allCerts.length > 3;
 
   return (
-    <section id="certifications" ref={sectionRef} className="relative py-28 bg-secondary overflow-hidden">
+    <section id="certifications" ref={sectionRef} className="relative py-28 bg-[#000000] overflow-hidden text-white">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coral/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/[0.02] rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ff2a2a]/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none animate-pulse" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#ff2a2a]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }} />
+
+      {/* Floating Code Symbols */}
+      <motion.div 
+        animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-5 lg:left-16 text-5xl md:text-7xl font-mono text-white/5 font-bold pointer-events-none select-none"
+      >
+        {"import"}
+      </motion.div>
+      <motion.div 
+        animate={{ y: [0, 20, 0], scale: [1, 1.05, 1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-1/3 right-5 lg:right-20 text-4xl md:text-6xl font-mono text-[#ff2a2a]/10 font-bold pointer-events-none select-none"
+      >
+        {";"}
+      </motion.div>
 
       <div className="container mx-auto px-6 lg:px-10 relative z-10">
         <SectionHeading eyebrow="CERTIFICATIONS" title="Always learning." />
@@ -167,7 +183,7 @@ export function Certifications() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center text-muted-foreground max-w-lg mx-auto -mt-8 mb-12 text-sm leading-relaxed"
+          className="text-center text-gray-400 max-w-lg mx-auto -mt-8 mb-12 text-sm leading-relaxed font-medium"
         >
           Industry-recognized certifications validating expertise across cloud platforms,
           software engineering, and emerging technologies.
@@ -192,8 +208,8 @@ export function Certifications() {
                 relative px-5 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300
                 ${
                   activeCategory === cat
-                    ? "bg-ink text-white shadow-lg shadow-ink/20"
-                    : "bg-background text-muted-foreground border border-border hover:border-coral/40 hover:text-ink hover:shadow-md"
+                    ? "bg-[#ff2a2a] text-white shadow-lg shadow-[#ff2a2a]/20"
+                    : "bg-black text-gray-400 border border-white/10 hover:border-[#ff2a2a]/40 hover:text-white hover:shadow-md"
                 }
               `}
             >
@@ -217,21 +233,21 @@ export function Certifications() {
               >
                 <div
                   onClick={() => setSelectedCert(cert)}
-                  className="group relative bg-white rounded-xl border border-border hover:border-border/80 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1"
+                  className="group relative bg-zinc-100 rounded-xl border border-zinc-300 hover:border-zinc-400 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)] hover:-translate-y-1"
                 >
                   {/* Top Bar - API/Git Header */}
-                  <div className="h-8 bg-secondary/80 border-b border-border flex items-center px-4 gap-2">
-                     <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">certification / {cert.icon}</span>
+                  <div className="h-8 bg-zinc-200/80 border-b border-zinc-300 flex items-center px-4 gap-2">
+                     <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-wider">certification / {cert.icon}</span>
                      <div className="ml-auto flex items-center gap-2">
                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                       <span className="font-mono text-[9px] text-green-600 font-bold uppercase tracking-wider">Verified Status</span>
+                       <span className="font-mono text-[9px] text-green-700 font-bold uppercase tracking-wider">Verified Status</span>
                      </div>
                   </div>
 
                   <div className="flex flex-col sm:flex-row h-full">
                     {/* Image Section */}
-                    <div className="w-full sm:w-[150px] shrink-0 bg-background/50 p-4 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-border/50">
-                      <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden rounded border border-border/50 shadow-sm bg-white">
+                    <div className="w-full sm:w-[150px] shrink-0 bg-zinc-100 p-4 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-zinc-300">
+                      <div className="relative w-full aspect-[4/3] sm:aspect-square overflow-hidden rounded border border-zinc-300 shadow-sm bg-zinc-200">
                         <img
                           loading="lazy"
                           decoding="async"
@@ -244,31 +260,31 @@ export function Certifications() {
 
                     {/* Content Section */}
                     <div className="p-5 flex-1 flex flex-col min-w-0">
-                      <h4 className="font-sans text-base font-bold text-ink leading-tight mb-2 group-hover:text-coral transition-colors line-clamp-2">
+                      <h4 className="font-sans text-base font-bold text-zinc-900 leading-tight mb-2 group-hover:text-[#ff2a2a] transition-colors line-clamp-2">
                         {cert.title}
                       </h4>
                       
                       {/* Code-like import statement for the issuer */}
-                      <div className="font-mono text-[11px] text-muted-foreground mb-3 truncate">
-                        <span className="text-coral font-semibold">import</span> {"{"} certification {"}"} <span className="text-coral font-semibold">from</span> <span className="text-blue-600">'{cert.issuer.toLowerCase().replace(/\s+/g, '-')}'</span>;
+                      <div className="font-mono text-[11px] text-zinc-600 mb-3 truncate">
+                        <span className="text-[#ff2a2a] font-semibold">import</span> {"{"} certification {"}"} <span className="text-[#ff2a2a] font-semibold">from</span> <span className="text-blue-600">'{cert.issuer.toLowerCase().replace(/\s+/g, '-')}'</span>;
                       </div>
 
-                      <p className="text-[13px] text-muted-foreground/80 leading-relaxed line-clamp-2 mb-4 flex-1">
+                      <p className="text-[13px] text-zinc-700 leading-relaxed line-clamp-2 mb-4 flex-1">
                         {cert.description}
                       </p>
 
-                      <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/40 gap-4">
-                        <div className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground truncate min-w-0">
-                          <span className="bg-secondary px-2 py-1 rounded text-ink/70 whitespace-nowrap border border-border/50">
+                      <div className="mt-auto flex items-center justify-between pt-3 border-t border-zinc-300 gap-4">
+                        <div className="flex items-center gap-2 font-mono text-[10px] text-zinc-700 truncate min-w-0">
+                          <span className="bg-zinc-200/80 px-2 py-1 rounded text-zinc-800 whitespace-nowrap border border-zinc-300 shadow-sm">
                             date: '{cert.date}'
                           </span>
                           {cert.credentialId && (
-                            <span className="bg-secondary px-2 py-1 rounded text-ink/70 truncate max-w-[120px] border border-border/50">
+                            <span className="bg-zinc-200/80 px-2 py-1 rounded text-zinc-800 truncate max-w-[120px] border border-zinc-300 shadow-sm">
                               id: '{cert.credentialId}'
                             </span>
                           )}
                         </div>
-                        <ExternalLink size={14} className="text-coral opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                        <ExternalLink size={14} className="text-[#ff2a2a] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                       </div>
                     </div>
                   </div>
@@ -286,9 +302,9 @@ export function Certifications() {
             transition={{ delay: 0.5 }}
             className="flex justify-center mt-12"
           >
-            <button
+              <button
               onClick={() => setShowAll(!showAll)}
-              className="group flex items-center gap-2 bg-background text-ink border border-border/60 hover:border-coral hover:text-coral transition-all duration-300 px-7 py-3.5 rounded-full font-semibold tracking-wide text-sm shadow-sm hover:shadow-lg hover:shadow-coral/10"
+              className="group flex items-center gap-2 bg-black text-white border border-white/20 hover:border-[#ff2a2a] hover:text-[#ff2a2a] transition-all duration-300 px-7 py-3.5 rounded-full font-semibold tracking-wide text-sm shadow-sm hover:shadow-lg"
             >
               {showAll ? (
                 <>
@@ -319,8 +335,8 @@ export function Certifications() {
             { value: "3", label: "Domains" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display text-3xl text-ink font-bold">{stat.value}</p>
-              <p className="text-xs text-muted-foreground tracking-wider mt-1 uppercase font-medium">{stat.label}</p>
+              <p className="font-display text-3xl text-white font-black">{stat.value}</p>
+              <p className="text-xs text-gray-400 tracking-wider mt-1 uppercase font-bold">{stat.label}</p>
             </div>
           ))}
         </motion.div>
@@ -348,7 +364,7 @@ export function Certifications() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCert(null)}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-10 p-2.5 bg-background/80 hover:bg-coral text-ink hover:text-white rounded-full backdrop-blur-md transition-all border border-border hover:border-coral shadow-sm"
+                className="absolute top-4 right-4 md:top-6 md:right-6 z-10 p-2.5 bg-black/80 hover:bg-[#ff2a2a] text-white hover:text-white rounded-full backdrop-blur-md transition-all border border-white/20 hover:border-[#ff2a2a] shadow-sm"
                 aria-label="Close modal"
               >
                 <X size={20} />
@@ -374,7 +390,7 @@ export function Certifications() {
               </div>
 
               {/* Modal Content Panel */}
-              <div className="p-8 md:p-10 bg-background md:w-2/5 lg:w-1/3 flex flex-col overflow-y-auto">
+              <div className="p-8 md:p-10 bg-[#111111] md:w-2/5 lg:w-1/3 flex flex-col overflow-y-auto">
                 {/* Issuer badge */}
                 <div className="flex items-center gap-3 mb-6">
                   <div
@@ -386,14 +402,14 @@ export function Certifications() {
                     {selectedCert.icon}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-ink">{selectedCert.issuer}</p>
+                    <p className="text-sm font-semibold text-white">{selectedCert.issuer}</p>
                     <p className="text-xs font-bold tracking-wider" style={{ color: selectedCert.color }}>
                       {selectedCert.date}
                     </p>
                   </div>
                 </div>
 
-                <h3 className="font-display text-2xl md:text-3xl text-ink leading-tight mb-4">
+                <h3 className="font-display text-2xl md:text-3xl text-white font-black leading-tight mb-4">
                   {selectedCert.title}
                 </h3>
 
@@ -402,23 +418,23 @@ export function Certifications() {
                   style={{ background: `linear-gradient(90deg, ${selectedCert.color}, transparent)` }}
                 />
 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-auto">
+                <p className="text-sm text-gray-300 leading-relaxed mb-auto font-medium">
                   {selectedCert.description}
                 </p>
 
                 {selectedCert.credentialId && (
-                  <div className="mt-8 pt-6 border-t border-border">
-                    <p className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground/60 uppercase mb-2">
+                  <div className="mt-8 pt-6 border-t border-white/10">
+                    <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-2">
                       Credential Verification
                     </p>
                     <a
                       href={`#verify-${selectedCert.credentialId}`}
-                      className="inline-flex items-center gap-3 w-full bg-secondary hover:bg-coral/10 px-4 py-3 rounded-xl border border-border/50 hover:border-coral transition-colors group/modal-link"
+                      className="inline-flex items-center gap-3 w-full bg-black hover:bg-[#ff2a2a]/10 px-4 py-3 rounded-xl border border-white/10 hover:border-[#ff2a2a] transition-colors group/modal-link"
                     >
-                      <span className="text-sm font-mono text-ink group-hover/modal-link:text-coral transition-colors break-all flex-1">
+                      <span className="text-sm font-mono text-gray-300 group-hover/modal-link:text-[#ff2a2a] transition-colors break-all flex-1">
                         {selectedCert.credentialId}
                       </span>
-                      <ExternalLink size={16} className="text-muted-foreground group-hover/modal-link:text-coral shrink-0" />
+                      <ExternalLink size={16} className="text-gray-400 group-hover/modal-link:text-[#ff2a2a] shrink-0" />
                     </a>
                   </div>
                 )}

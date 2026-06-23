@@ -1,31 +1,34 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import React from 'react';
 
-export function Footer() {
+export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="container mx-auto px-6 lg:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-[11px] tracking-[0.25em] text-muted-foreground">
-          © {new Date().getFullYear()} · MUHAMMED NIHAL
-        </p>
-        <div className="flex items-center gap-3">
-          {[
-            { Icon: Github, href: "https://github.com/Nihalbaabi" },
-            { Icon: Linkedin, href: "https://www.linkedin.com/in/muhammednihalpa477" },
-            { Icon: Mail, href: "mailto:nihalspixel@gmail.com" },
-          ].map(({ Icon, href }, i) => (
-            <a
-              key={i}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="h-10 w-10 rounded-full border-2 border-ink flex items-center justify-center text-ink hover:bg-ink hover:text-white hover:scale-110 transition-all duration-200 shadow-sm"
-              aria-label={`Visit ${href}`}
-            >
-              <Icon size={18} strokeWidth={2.5} />
-            </a>
-          ))}
+    <footer className="bg-[#111111] text-[#d4d4d4] py-10 md:py-16 px-6 md:px-12 w-full font-mono text-[10px] md:text-xs tracking-widest flex flex-col items-center">
+      
+      {/* Huge Text */}
+      <div className="w-full flex justify-center items-center pb-12 overflow-hidden">
+        <h2 className="text-[18vw] md:text-[16vw] leading-none font-sans font-bold tracking-tighter lowercase select-none text-[#f4f4f4] w-full text-center">
+          nihal
+        </h2>
+      </div>
+
+      {/* Bottom Row */}
+      <div className="w-full flex flex-col md:flex-row justify-between items-center gap-8 font-medium">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+          <a href="#contact" className="underline hover:text-white transition-colors underline-offset-4 decoration-1 font-bold">Contact</a>
+          <p className="text-white/60 font-mono">
+            &copy; {new Date().getFullYear()} Nihal
+          </p>
+        </div>
+        
+        <div className="flex items-center">
+          <a href="mailto:muhammednihal477@gmail.com" className="underline hover:text-white transition-colors underline-offset-4 decoration-1 lowercase">muhammednihal477@gmail.com</a>
+        </div>
+        
+        <div className="flex items-center gap-4">
+          <a href="https://linkedin.com/in/muhammednihalpa477" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors underline-offset-4 decoration-1">LinkedIn</a>
+          <a href="https://github.com/Nihalbaabi" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors underline-offset-4 decoration-1">GitHub</a>
         </div>
       </div>
     </footer>
   );
-}
+};

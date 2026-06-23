@@ -36,18 +36,7 @@ const experiences = [
     color: "#1A5276",
     certificates: [certDextra],
   },
-  {
-    title: "Web Development Intern",
-    organization: "CodSoft",
-    period: "Jan 2026 – Feb 2026",
-    description:
-      "Engineered responsive UI modules using React.js and modern JavaScript, optimizing cross-device layout discrepancies and enhancing overall front-end architecture.",
-    skills: ["HTML", "CSS", "JavaScript", "React.js", "Responsive Design"],
-    logo: certCodsoft,
-    logoFallback: "CS",
-    color: "#6C3FC5",
-    certificates: [certCodsoft],
-  },
+
   {
     title: "Winter School Participant",
     organization: "SRMIST School of Computing",
@@ -62,44 +51,45 @@ const experiences = [
     certificates: [certSrmist],
   },
   {
-    title: "Full‑Stack Development Intern",
+    title: "Machine Learning Intern",
     organization: "ICT Academy of Kerala",
-    period: "Jun 2025 – Jul 2025",
-    location: "Chalakudy, Kerala, India",
+    period: "Present",
+    location: "Kerala, India",
     description:
-      "Architected full-stack MERN applications with robust API integrations, ensuring secure authentication workflows and scalable database management.",
-    skills: ["MongoDB", "Express.js", "React.js", "Node.js", "REST APIs"],
+      "Testing machine learning algorithms and integrating them into an existing backend system.",
+    skills: ["Machine Learning", "Python", "Data Science"],
     logo: certIct,
     logoFallback: "ICT",
     color: "#0D9488",
     certificates: [certIct],
   },
   {
-    title: "Flutter Developer Intern",
+    title: "Backend Developer Intern",
+    organization: "ICT Academy of Kerala",
+    period: "Jun 2025 – Jul 2025",
+    location: "Chalakudy, Kerala, India",
+    description:
+      "Developed REST APIs and implemented secure authentication and database management features.",
+    skills: ["MongoDB", "Express.js", "Node.js", "REST APIs"],
+    logo: certIct,
+    logoFallback: "ICT",
+    color: "#0D9488",
+    certificates: [certIct],
+  },
+  {
+    title: "Mobile Developer Intern",
     organization: "Luminar Technolab",
     period: "Jun 2025",
     location: "Kochi, Kerala, India",
     description:
-      "Developed cross‑platform mobile UI components using Flutter, focusing on state management efficiency and seamless cross-device widget implementations.",
-    skills: ["Flutter", "Dart", "Mobile UI Design", "Cross‑Platform Development"],
+      "Built mobile application features and integrated them with backend APIs.",
+    skills: ["Flutter", "Dart", "API Integration"],
     logo: certLuminar,
     logoFallback: "LT",
     color: "#0369A1",
     certificates: [certLuminar],
   },
-  {
-    title: "Flutter Developer Intern",
-    organization: "Genzee Technologies LLP",
-    period: "Jun 2024 – Jul 2024",
-    location: "Ernakulam, Kerala, India",
-    description:
-      "Built and tested core Flutter application features, leading debugging efforts within Android Studio to reduce crash rates and improve performance.",
-    skills: ["Flutter", "Android Studio", "Debugging", "App Testing"],
-    logo: certGenzee,
-    logoFallback: "GT",
-    color: "#059669",
-    certificates: [certGenzee],
-  },
+
 ];
 
 
@@ -129,21 +119,21 @@ export function Experiences() {
   }>);
 
   return (
-    <section id="experience" className="relative py-28 bg-background">
+    <section id="experience" className="relative py-28 bg-[#111111] text-white">
       <div className="container mx-auto px-6 lg:px-10">
         <SectionHeading eyebrow="EXPERIENCE" title="Professional Journey" />
         
-        <div className="mt-16 max-w-3xl mx-auto bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-border/80 p-6 sm:p-8 md:p-10 text-left">
-          <h2 className="text-2xl font-bold text-ink mb-8">Experience</h2>
+        <div className="mt-16 max-w-3xl mx-auto bg-black rounded-xl shadow-2xl border border-white/10 p-6 sm:p-8 md:p-10 text-left">
+          <h2 className="text-2xl font-bold text-white mb-8">Experience</h2>
           
           <div className="space-y-6">
             {groupedExperiences.map((group, idx) => (
-              <div key={idx} className="flex gap-3 sm:gap-4 border-b border-border/40 pb-6 last:border-0 last:pb-0">
+              <div key={idx} className="flex gap-3 sm:gap-4 border-b border-white/10 pb-6 last:border-0 last:pb-0">
                 {/* Logo */}
                 <div 
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-md flex items-center justify-center shrink-0 overflow-hidden shadow-sm border border-border/50"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-md flex items-center justify-center shrink-0 overflow-hidden shadow-sm border border-white/10"
                   style={{ 
-                    background: group.logo ? 'var(--secondary)' : `linear-gradient(135deg, ${group.color || '#333'}, ${group.color ? group.color + 'CC' : '#555'})`,
+                    background: group.logo ? '#222' : `linear-gradient(135deg, ${group.color || '#333'}, ${group.color ? group.color + 'CC' : '#555'})`,
                   }}
                 >
                   {group.logo ? (
@@ -163,31 +153,31 @@ export function Experiences() {
 
                 {/* Content */}
                 <div className="flex-1 pb-2">
-                  <h3 className="font-bold text-[16px] sm:text-[17px] text-ink leading-tight">{group.organization}</h3>
-                  <p className="text-[14px] text-ink/70 mt-0.5 mb-4">Full-time</p>
+                  <h3 className="font-bold text-[16px] sm:text-[17px] text-white leading-tight">{group.organization}</h3>
+                  <p className="text-[14px] text-gray-400 mt-0.5 mb-4">Full-time</p>
                   
                   <div className="relative">
                     {/* Vertical Line */}
-                    <div className="absolute left-[5px] top-3 bottom-4 w-[2px] bg-border/80" />
+                    <div className="absolute left-[5px] top-3 bottom-4 w-[2px] bg-white/20" />
                     
                     <div className="space-y-6">
                       {group.roles.map((role, rIdx) => (
                         <div key={rIdx} className="relative pl-7 sm:pl-8">
                           {/* Dot */}
-                          <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-border/80 -translate-x-[4px]" />
+                          <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-[#ff2a2a] -translate-x-[4px]" />
                           
-                          <h4 className="font-semibold text-[15px] sm:text-[16px] text-ink leading-tight">{role.title}</h4>
-                          <p className="text-[13.5px] text-ink/60 mt-0.5">
+                          <h4 className="font-semibold text-[15px] sm:text-[16px] text-white leading-tight">{role.title}</h4>
+                          <p className="text-[13.5px] text-gray-400 mt-0.5">
                             {role.period}
                           </p>
                           {role.location && (
-                            <p className="text-[13.5px] text-ink/60">
+                            <p className="text-[13.5px] text-gray-400">
                               {role.location}
                             </p>
                           )}
                           
                           {role.description && (
-                            <p className="mt-3 text-[14px] text-ink/90 leading-relaxed max-w-2xl">
+                            <p className="mt-3 text-[14px] text-gray-300 leading-relaxed max-w-2xl">
                               {role.description}
                             </p>
                           )}
@@ -198,22 +188,22 @@ export function Experiences() {
                                 <div 
                                   key={cIdx}
                                   onClick={() => setSelectedCert(cert)}
-                                  className="flex items-center gap-3 border border-border/80 rounded-lg overflow-hidden pr-4 hover:bg-secondary/60 cursor-pointer transition-colors w-fit"
+                                  className="flex items-center gap-3 border border-white/20 rounded-lg overflow-hidden pr-4 hover:bg-white/10 cursor-pointer transition-colors w-fit"
                                 >
-                                  <img loading="lazy" decoding="async" src={cert} alt="Certificate thumbnail" className="w-16 h-12 object-cover border-r border-border/60" />
-                                  <span className="text-[13.5px] font-semibold text-ink">Certificate</span>
+                                  <img loading="lazy" decoding="async" src={cert} alt="Certificate thumbnail" className="w-16 h-12 object-cover border-r border-white/20" />
+                                  <span className="text-[13.5px] font-semibold text-white">Certificate</span>
                                 </div>
                               ))}
                             </div>
                           )}
 
                           {role.skills && role.skills.length > 0 && (
-                            <div className="mt-4 flex items-start gap-2 text-[13.5px] text-ink">
-                              <svg className="shrink-0 mt-[2px] text-ink/70" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <div className="mt-4 flex items-start gap-2 text-[13.5px] text-gray-300">
+                              <svg className="shrink-0 mt-[2px] text-[#ff2a2a]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>
                               </svg>
-                              <span className="font-medium text-ink">
-                                <span className="font-bold">{role.skills.slice(0, 2).join(", ")}</span>
+                              <span className="font-medium text-gray-300">
+                                <span className="font-bold text-white">{role.skills.slice(0, 2).join(", ")}</span>
                                 {role.skills.length > 2 && ` and +${role.skills.length - 2} skills`}
                               </span>
                             </div>

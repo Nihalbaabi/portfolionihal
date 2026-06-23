@@ -13,54 +13,54 @@ import meditrackImg from "@/assets/project-iot.jpg";
 const projects = [
   {
     n: "01",
-    title: "FleetFlow – Modular Fleet & Logistics Management",
-    desc: "Built a full-stack scalable logistics system using Odoo to digitize operational workflows, featuring real-time trip dispatching and modular financial analytics.",
-    tech: ["Full-Stack", "Odoo", "Architecture"],
+    title: "FleetFlow – Logistics Management Backend",
+    desc: "Built a backend system to handle logistics workflows and transactional records, designing database schemas to improve query times.",
+    tech: ["Backend", "Relational Databases", "Express.js"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/posts/muhammednihalpa477_odoohackathon-fleetmanagement-logistics-ugcPost-7451669170276052992-OM-N/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFkh6gQBwD2lwsWOVoF0XjDRw4AcQuTjnS0",
     image: fleetflowImg,
   },
   {
     n: "02",
-    title: "GODDESS – Women Empowering Women",
-    desc: "Engineered a women-centric digital platform using Flutter and Node.js to enhance personal safety, integrating smart SOS, live location sharing, and AI-powered recommendations.",
-    tech: ["Flutter", "Node.js", "MongoDB", "Firebase"],
+    title: "GODDESS – Women Safety App",
+    desc: "Developed a location-sharing and SOS alert application that handles multiple concurrent users to enhance personal safety.",
+    tech: ["Node.js", "MongoDB", "Express", "Flutter"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/posts/muhammednihalpa477_womenempowerment-techforgood-mobileappdevelopment-ugcPost-7448635343794507777-ShR4/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFkh6gQBwD2lwsWOVoF0XjDRw4AcQuTjnS0",
     image: goddessImg,
   },
   {
     n: "03",
-    title: "Timber Calculator App",
-    desc: "Developed a cross-platform mobile application using Flutter and Firebase to digitize timber volume calculations, eliminating human error and securing transaction records.",
-    tech: ["Flutter", "Firebase", "Mobile App"],
+    title: "Timber Data App",
+    desc: "Created a mobile application to calculate timber volume and store records securely in a cloud database.",
+    tech: ["Firebase", "Mobile Development", "Flutter"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/posts/muhammednihalpa477_flutter-firebase-mobiledevelopment-ugcPost-7449725068559159296-pLYW/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFkh6gQBwD2lwsWOVoF0XjDRw4AcQuTjnS0",
     image: timberImg,
   },
   {
     n: "04",
-    title: "A-Ziet Event Management System",
-    desc: "Created a full-stack event discovery platform using the MERN stack to streamline registration and administration for students and faculty, optimizing database queries.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    title: "A-Ziet – Event Management System",
+    desc: "Developed a full-stack platform for event registration, optimizing the database queries and building secure authentication.",
+    tech: ["Node.js", "Express.js", "MongoDB", "Authentication"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/posts/muhammednihalpa477_mern-reactjs-nodejs-ugcPost-7371436808024252416-_v_7/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFkh6gQBwD2lwsWOVoF0XjDRw4AcQuTjnS0",
     image: azietImg,
   },
   {
     n: "05",
-    title: "Online Shopping System",
-    desc: "Designed an online shopping platform utilizing relational DBMS concepts to handle complex database management and improve transactional integrity.",
-    tech: ["DBMS", "Web Development"],
+    title: "Relational Database App",
+    desc: "Designed a relational database schema for an online store to manage users and improve data integrity.",
+    tech: ["DBMS", "SQL", "Database Design"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/in/muhammednihalpa477/",
     image: shopeaseImg,
   },
   {
     n: "06",
-    title: "MediTrack: Smart Pill Box",
-    desc: "Built an IoT-driven medication tracking system integrating an ESP32 micro-controller and a Flutter app to ensure timely medicine intake with Real-Time Clock precision.",
-    tech: ["ESP32", "Flutter", "IoT", "RTC"],
+    title: "MediTrack – Smart Pill Box",
+    desc: "Built an IoT pill box using an ESP32 microcontroller to provide scheduled medication alerts and emergency assistance for the elderly.",
+    tech: ["ESP32", "C/C++", "Python", "IoT", "RTC"],
     github: "https://github.com/Nihalbaabi",
     demo: "https://www.linkedin.com/posts/muhammednihalpa477_excited-to-share-my-latest-project-smart-ugcPost-7370381676541153280-w7PO/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFkh6gQBwD2lwsWOVoF0XjDRw4AcQuTjnS0",
     image: meditrackImg,
@@ -85,37 +85,37 @@ export function Projects() {
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
-    <section id="projects" className="relative py-28 bg-background overflow-hidden">
+    <section id="projects" className="relative py-28 bg-[#000000] overflow-hidden text-white">
       {/* Background Glows */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-orange-400/10 blur-[100px] rounded-full mix-blend-multiply pointer-events-none animate-pulse" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-rose-400/10 blur-[100px] rounded-full mix-blend-multiply pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#ff2a2a]/10 blur-[100px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#ff2a2a]/5 blur-[100px] rounded-full pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
 
       {/* Floating Code Symbols */}
       <motion.div 
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-32 left-10 lg:left-20 text-5xl md:text-7xl font-mono text-ink/[0.04] font-bold pointer-events-none select-none"
+        className="absolute top-32 left-10 lg:left-20 text-5xl md:text-7xl font-mono text-white/5 font-bold pointer-events-none select-none"
       >
         {"</>"}
       </motion.div>
       <motion.div 
         animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute top-1/3 right-10 lg:right-24 text-6xl md:text-8xl font-mono text-ink/[0.03] font-bold pointer-events-none select-none"
+        className="absolute top-1/3 right-10 lg:right-24 text-6xl md:text-8xl font-mono text-white/5 font-bold pointer-events-none select-none"
       >
         {"{}"}
       </motion.div>
       <motion.div 
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/4 left-10 lg:left-32 text-5xl md:text-6xl font-mono text-ink/[0.04] font-bold pointer-events-none select-none"
+        className="absolute bottom-1/4 left-10 lg:left-32 text-5xl md:text-6xl font-mono text-white/5 font-bold pointer-events-none select-none"
       >
         {"[]"}
       </motion.div>
       <motion.div 
         animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-20 lg:right-40 text-4xl font-mono text-coral/[0.08] font-bold pointer-events-none select-none"
+        className="absolute bottom-20 right-20 lg:right-40 text-4xl font-mono text-[#ff2a2a]/20 font-bold pointer-events-none select-none"
       >
         {"=>"}
       </motion.div>
@@ -143,7 +143,7 @@ export function Projects() {
                 animate="visible"
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 key={p.title}
-                className="group relative bg-ink rounded-2xl p-0 transition-all duration-500 overflow-hidden flex flex-col h-full hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:-translate-y-2 z-10 border border-white/10"
+                className="group relative bg-[#111111] rounded-2xl p-0 transition-all duration-500 overflow-hidden flex flex-col h-full hover:shadow-[0_20px_50px_rgba(255,42,42,0.15)] hover:-translate-y-2 z-10 border border-white/10"
               >
                 {/* Terminal Header */}
                 <div className="h-10 bg-white/5 flex items-center px-4 gap-2 border-b border-white/5">
@@ -155,17 +155,17 @@ export function Projects() {
 
                 <div className="p-6 sm:p-8 flex-1 flex flex-col font-mono relative">
                   {/* Background Number Watermark */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-[8rem] font-bold text-white/[0.02] group-hover:text-coral/[0.05] transition-all duration-700 leading-none pointer-events-none select-none z-0 group-hover:scale-110">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-[8rem] font-bold text-white/[0.02] group-hover:text-[#ff2a2a]/[0.05] transition-all duration-700 leading-none pointer-events-none select-none z-0 group-hover:scale-110">
                     {p.n}
                   </div>
 
                   <div className="relative z-10 flex-1 flex flex-col">
                     <div className="flex justify-between items-start gap-4 mb-5">
-                      <h3 className="font-sans text-xl text-white leading-tight font-bold group-hover:text-coral transition-colors">
+                      <h3 className="font-sans text-xl text-white leading-tight font-bold group-hover:text-[#ff2a2a] transition-colors">
                         {p.title}
                       </h3>
                       {p.image && (
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover:border-coral/40 group-hover:shadow-[0_4px_20px_rgba(244,63,94,0.2)] transition-all duration-500 bg-[#0d1117] flex items-center justify-center p-1">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group-hover:border-[#ff2a2a]/40 transition-all duration-500 bg-[#0d1117] flex items-center justify-center p-1">
                           <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-700" />
                         </div>
                       )}
@@ -179,7 +179,7 @@ export function Projects() {
                       {p.tech.map((t) => (
                         <span
                           key={t}
-                          className="text-[10px] tracking-widest text-[#ff7b72] bg-[#ff7b72]/10 border border-[#ff7b72]/20 px-2 py-1 rounded font-bold uppercase"
+                          className="text-[10px] tracking-widest text-white/80 bg-white/5 border border-white/10 px-2 py-1 rounded font-bold uppercase"
                         >
                           {t}
                         </span>
@@ -191,7 +191,7 @@ export function Projects() {
                         href={p.demo}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 bg-white text-ink py-2.5 px-4 rounded-lg font-bold text-[13px] hover:bg-coral hover:text-white transition-colors flex items-center justify-center gap-2"
+                        className="flex-1 bg-white text-black py-2.5 px-4 rounded-lg font-bold text-[13px] hover:bg-[#ff2a2a] hover:text-white transition-colors flex items-center justify-center gap-2"
                       >
                         <ArrowUpRight size={16} />
                         <span>Live Demo</span>
@@ -214,12 +214,11 @@ export function Projects() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Show More Button (Desktop & Mobile) */}
         {projects.length > 3 && (
           <div className="flex justify-center mt-12">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="flex items-center gap-2 bg-secondary text-ink border border-border/50 hover:border-coral hover:text-coral transition-colors px-6 py-3 rounded-full font-semibold tracking-wide text-sm"
+              className="flex items-center gap-2 bg-white text-black border border-gray-300 hover:border-[#ff2a2a] hover:text-[#ff2a2a] transition-colors px-6 py-3 rounded-full font-semibold tracking-wide text-sm"
             >
               {showAll ? (
                 <>Show Less <ChevronUp size={18} /></>

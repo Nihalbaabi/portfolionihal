@@ -45,8 +45,28 @@ export function Achievements() {
   }, []);
 
   return (
-    <section id="achievements" className="relative py-28 bg-secondary">
-      <div className="container mx-auto px-6 lg:px-10">
+    <section id="achievements" className="relative py-28 bg-[#000000] text-white overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#ff2a2a]/10 blur-[100px] rounded-full pointer-events-none animate-pulse" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#ff2a2a]/5 blur-[100px] rounded-full pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
+
+      {/* Floating Code Symbols */}
+      <motion.div 
+        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-40 left-10 lg:left-20 text-5xl md:text-7xl font-mono text-white/5 font-bold pointer-events-none select-none"
+      >
+        {"<Achievements />"}
+      </motion.div>
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-32 right-10 lg:right-24 text-4xl md:text-6xl font-mono text-[#ff2a2a]/10 font-bold pointer-events-none select-none"
+      >
+        {"() => {}"}
+      </motion.div>
+
+      <div className="container mx-auto px-6 lg:px-10 relative z-10">
         <SectionHeading
           eyebrow="ACHIEVEMENTS"
           title="Milestones & moments."
@@ -64,7 +84,7 @@ export function Achievements() {
                 variants={itemVariants}
                 key={item.title}
                 onClick={() => setSelectedItem(item)}
-                className="group bg-white rounded-none border border-border/80 hover:border-coral hover:shadow-[0_10px_40px_rgba(244,63,94,0.1)] transition-all duration-500 overflow-hidden flex flex-col cursor-pointer shrink-0 w-[85vw] sm:w-auto snap-center aspect-square"
+                className="group bg-[#111111] rounded-none border border-white/10 hover:border-[#ff2a2a] hover:shadow-[0_10px_40px_rgba(255,42,42,0.15)] transition-all duration-500 overflow-hidden flex flex-col cursor-pointer shrink-0 w-[85vw] sm:w-auto snap-center aspect-square"
               >
                 {/* ~70% Image Area */}
                 <div className="h-[65%] lg:h-[68%] w-full overflow-hidden relative shrink-0">
@@ -73,20 +93,20 @@ export function Achievements() {
                 {/* ~30% Text Area */}
                 <div className="flex-1 px-5 py-4 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-2">
-                    <span className="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral group-hover:bg-coral group-hover:text-white transition-all duration-300">
+                    <span className="inline-flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-[#ff2a2a]/10 text-[#ff2a2a] group-hover:bg-[#ff2a2a] group-hover:text-white transition-all duration-300">
                       <item.Icon size={20} strokeWidth={1.5} />
                     </span>
-                    <h3 className="font-display text-[15px] sm:text-[16px] lg:text-[18px] text-ink font-bold leading-tight line-clamp-2">{item.title}</h3>
+                    <h3 className="font-display text-[15px] sm:text-[16px] lg:text-[18px] text-white font-bold leading-tight line-clamp-2">{item.title}</h3>
                   </div>
-                  <p className="text-[12px] lg:text-[13px] text-muted-foreground leading-relaxed line-clamp-2">{item.desc}</p>
+                  <p className="text-[12px] lg:text-[13px] text-gray-400 leading-relaxed line-clamp-2">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
           
           {/* Mobile Swipe Indicator */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-muted-foreground/70 sm:hidden text-[13px] font-medium tracking-wide">
-            <MoveHorizontal size={16} className="animate-pulse text-coral" />
+          <div className="mt-4 flex items-center justify-center gap-2 text-gray-400 sm:hidden text-[13px] font-medium tracking-wide">
+            <MoveHorizontal size={16} className="animate-pulse text-[#ff2a2a]" />
             <span>Swipe to explore more</span>
           </div>
         </div>
@@ -107,15 +127,15 @@ export function Achievements() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-background rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-4xl bg-black rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] border border-white/10"
             >
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/50 text-white hover:bg-black/80 rounded-full transition-colors backdrop-blur-md"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/50 text-white hover:bg-[#ff2a2a] rounded-full transition-colors backdrop-blur-md border border-white/20"
               >
                 <X size={24} />
               </button>
-              <div className="w-full bg-ink/5 flex items-center justify-center overflow-hidden h-[60vh] md:h-[70vh]">
+              <div className="w-full bg-black/5 flex items-center justify-center overflow-hidden h-[60vh] md:h-[70vh]">
                 <img 
                   loading="lazy"
                   decoding="async"
@@ -124,14 +144,14 @@ export function Achievements() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="p-8 bg-background border-t border-border shrink-0">
+              <div className="p-8 bg-[#111111] border-t border-white/10 shrink-0">
                 <div className="flex items-center gap-4 mb-3">
-                  <span className="inline-flex p-3 rounded-xl bg-coral/10 text-coral">
+                  <span className="inline-flex p-3 rounded-xl bg-[#ff2a2a]/10 text-[#ff2a2a]">
                     <selectedItem.Icon size={24} />
                   </span>
-                  <h3 className="font-display text-2xl md:text-3xl text-ink font-bold">{selectedItem.title}</h3>
+                  <h3 className="font-display text-2xl md:text-3xl text-white font-bold">{selectedItem.title}</h3>
                 </div>
-                <p className="text-muted-foreground text-lg leading-relaxed">{selectedItem.desc}</p>
+                <p className="text-gray-400 text-lg leading-relaxed">{selectedItem.desc}</p>
               </div>
             </motion.div>
           </motion.div>

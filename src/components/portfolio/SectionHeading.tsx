@@ -15,15 +15,18 @@ export function SectionHeading({ eyebrow, title, description, align = "center" }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`${isCenter ? "text-center mx-auto" : ""} max-w-2xl mb-16`}
+      className={`${isCenter ? "text-center mx-auto flex flex-col items-center" : ""} max-w-2xl mb-16 relative z-10`}
     >
-      <div className={`flex items-center gap-6 mb-4 ${isCenter ? "justify-center" : ""}`}>
-        <span className="h-[3px] w-24 bg-coral" />
-        <p className="text-[35px] tracking-[0.3em] font-extrabold text-coral uppercase">{eyebrow}</p>
-        <span className="h-[3px] w-24 bg-coral" />
+      <div className={`inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm font-bold mb-6 shadow-sm bg-white text-gray-800`}>
+        {eyebrow}
       </div>
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-inherit leading-[1.1] mb-6 tracking-tight">
+        {title}
+      </h2>
       {description && (
-        <p className="mt-5 text-muted-foreground leading-relaxed text-center">{description}</p>
+        <p className="text-gray-500 text-base md:text-lg max-w-sm font-medium leading-relaxed">
+          {description}
+        </p>
       )}
     </motion.div>
   );
