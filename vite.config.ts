@@ -15,21 +15,6 @@ export default defineConfig({
   vite: {
     esbuild: {
       drop: ['console', 'debugger'],
-    },
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('framer-motion')) return 'vendor-framer-motion';
-              if (id.includes('lucide-react')) return 'vendor-lucide';
-              if (id.includes('react') || id.includes('react-dom')) return 'vendor-react';
-              if (id.includes('@radix-ui')) return 'vendor-radix';
-              return 'vendor-core';
-            }
-          }
-        }
-      }
     }
   }
 });
