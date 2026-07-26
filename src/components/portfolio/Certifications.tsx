@@ -12,6 +12,7 @@ import cert5 from "@/assets/certificates/cert5.jpeg";
 import cert6 from "@/assets/certificates/cert6.jpeg";
 import cert7 from "@/assets/certificates/cert7.jpeg";
 import cert8 from "@/assets/certificates/cert8.jpeg";
+import certIctml from "@/assets/experiences/ictml.jpg";
 
 interface Certification {
   title: string;
@@ -121,6 +122,17 @@ const certifications: CertGroup[] = [
     category: "Emerging Tech",
     emoji: "🤖",
     items: [
+      {
+        title: "Machine Learning with Gen AI Internship",
+        issuer: "ICT Academy of Kerala",
+        date: "Jul 2026",
+        credentialId: "Grade: A",
+        description:
+          "Completed an intensive one-month internship on Machine Learning with Generative AI with the ICT Academy of Kerala, earning an 'A' grade. Gained hands-on experience developing ML models and Generative AI applications.",
+        image: certIctml,
+        color: "#0D9488",
+        icon: "ML",
+      },
       {
         title: "Artificial Intelligence Fundamentals",
         issuer: "IBM",
@@ -330,7 +342,7 @@ export function Certifications() {
           className="mt-16 grid grid-cols-3 max-w-md mx-auto gap-6"
         >
           {[
-            { value: "8", label: "Certifications" },
+            { value: "9", label: "Certifications" },
             { value: "5+", label: "Platforms" },
             { value: "3", label: "Domains" },
           ].map((stat) => (

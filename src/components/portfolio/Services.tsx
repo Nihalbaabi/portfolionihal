@@ -8,6 +8,7 @@ import certSrmist from "@/assets/experiences/PXL_20251226_114727077.jpg";
 import certIct from "@/assets/experiences/ict internship.jpg";
 import certCodsoft from "@/assets/experiences/Muhammed Nihal P A.jpg";
 import certDextra from "@/assets/experiences/Muhammed Nihal P A (2)_page-0001.jpg";
+import certIctml from "@/assets/experiences/ictml.jpg";
 
 interface TagCardProps {
   number: string;
@@ -272,12 +273,12 @@ export const Services = () => {
 
           <TagCard 
             number="02"
-            title="Backend Dev Intern"
+            title="Full Stack Dev Intern"
             organization="ICT Academy of Kerala"
             period="Jun 2025 - Jul 2025"
             location="Chalakudy, Kerala, India"
-            text="Developed REST APIs and implemented secure authentication and database management features."
-            skills={["MongoDB", "Express.js", "Node.js", "REST APIs"]}
+            text="Developed full-stack web applications using MERN stack with RESTful APIs and JWT authentication."
+            skills={["MongoDB", "Express.js", "React.js", "Node.js"]}
             certificates={[certIct]}
             setSelectedCert={setSelectedCert}
             className="md:absolute md:top-[450px] md:left-[2%] lg:left-[5%] -rotate-2 md:-rotate-4"
@@ -289,13 +290,13 @@ export const Services = () => {
 
           <TagCard 
             number="03"
-            title="Machine Learning Intern"
+            title="Machine Learning with Gen AI Intern"
             organization="ICT Academy of Kerala"
-            period="Present"
+            period="Jun 2026 - Jul 2026"
             location="Kerala, India"
-            text="Testing machine learning algorithms and integrating them into an existing backend system."
-            skills={["Machine Learning", "Python", "Data Science"]}
-            certificates={[certIct]}
+            text="Completed an intensive 1-month internship on Machine Learning with Generative AI (Grade: A), developing ML models and integrating Gen AI solutions."
+            skills={["Machine Learning", "Generative AI", "Python", "Data Science"]}
+            certificates={[certIctml]}
             setSelectedCert={setSelectedCert}
             className="md:absolute md:top-[700px] md:right-[2%] lg:right-[10%] rotate-1 md:rotate-2"
             aosType="fade-left"

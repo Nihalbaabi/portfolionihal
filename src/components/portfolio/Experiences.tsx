@@ -9,6 +9,7 @@ import certSrmist from "@/assets/experiences/PXL_20251226_114727077.jpg";
 import certIct from "@/assets/experiences/ict internship.jpg";
 import certCodsoft from "@/assets/experiences/Muhammed Nihal P A.jpg";
 import certDextra from "@/assets/experiences/Muhammed Nihal P A (2)_page-0001.jpg";
+import certIctml from "@/assets/experiences/ictml.jpg";
 
 const experiences = [
   {
@@ -51,26 +52,26 @@ const experiences = [
     certificates: [certSrmist],
   },
   {
-    title: "Machine Learning Intern",
+    title: "Machine Learning with Gen AI Intern",
     organization: "ICT Academy of Kerala",
-    period: "Present",
+    period: "Jun 2026 – Jul 2026",
     location: "Kerala, India",
     description:
-      "Testing machine learning algorithms and integrating them into an existing backend system.",
-    skills: ["Machine Learning", "Python", "Data Science"],
-    logo: certIct,
+      "Completed an intensive one-month internship on Machine Learning with Generative AI (Grade: A). Tested and implemented ML models and Gen AI solutions.",
+    skills: ["Machine Learning", "Generative AI", "Python", "Data Science"],
+    logo: certIctml,
     logoFallback: "ICT",
     color: "#0D9488",
-    certificates: [certIct],
+    certificates: [certIctml],
   },
   {
-    title: "Backend Developer Intern",
+    title: "Full Stack Developer Intern",
     organization: "ICT Academy of Kerala",
     period: "Jun 2025 – Jul 2025",
     location: "Chalakudy, Kerala, India",
     description:
-      "Developed REST APIs and implemented secure authentication and database management features.",
-    skills: ["MongoDB", "Express.js", "Node.js", "REST APIs"],
+      "Developed full-stack web applications using MERN stack with RESTful APIs and JWT authentication.",
+    skills: ["MongoDB", "Express.js", "React.js", "Node.js"],
     logo: certIct,
     logoFallback: "ICT",
     color: "#0D9488",
